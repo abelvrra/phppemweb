@@ -10,12 +10,15 @@ if(isset($_POST['login'])){
     $query = mysqli_query($conn, "SELECT * FROM users WHERE email='$email' AND password='$password'");
 
     if(mysqli_num_rows($query) > 0){
-        $data = mysqli_fetch_assoc($query);
-        $_SESSION['nama'] = $data['nama'];
-        echo "<script>alert('Login berhasil');window.location='dashboard.php';</script>";
-    } else {
-        echo "<script>alert('Email atau password salah');</script>";
-    }
+    $data = mysqli_fetch_assoc($query);
+    $_SESSION['nama'] = $data['nama'];
+    
+    // TAMBAHKAN KODE INI DI SINI
+    $_SESSION['role'] = $data['role']; 
+    $_SESSION['foto'] = $data['foto']; 
+    
+    echo "<script>alert('Login berhasil');window.location='dashboard.php';</script>";
+}
 }
 ?>
 
